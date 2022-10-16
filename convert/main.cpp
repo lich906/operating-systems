@@ -39,5 +39,5 @@ catch (const std::runtime_error& e)
 {
 	std::cout << "Error: " << e.what() << std::endl;
 	std::cout << Constants::USAGE_HELP_MESSAGE << std::endl;
-	return 0;
+	return 1;
 }
