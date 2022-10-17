@@ -1,4 +1,5 @@
 #include "MooreMachineTable.h"
+#include "MealyMachineTable.h"
 
 void MooreMachineTable::ReadFromCsvFile(const std::string& fileName, const char sep)
 {
@@ -92,33 +93,33 @@ void MooreMachineTable::PrintToCsvFile(const std::string& fileName, const char s
 		file << string << std::endl;
 }
 
-MealyMachineTable MooreMachineTable::ConvertToMealy(const char stateSymbol) const
-{
-	MealyMachineTable mealyTable;
+// MealyMachineTable MooreMachineTable::ConvertToMealy(const char stateSymbol) const
+// {
+// 	MealyMachineTable mealyTable;
 
-	std::map<std::string, std::string> mooreStateToMealyState;
-	size_t count = 0;
-	for (auto& state : m_states)
-	{
-		mooreStateToMealyState[state.first] = stateSymbol + std::to_string(count);
-		count++;
-	}
+// 	std::map<std::string, std::string> mooreStateToMealyState;
+// 	size_t count = 0;
+// 	for (auto& state : m_states)
+// 	{
+// 		mooreStateToMealyState[state.first] = stateSymbol + std::to_string(count);
+// 		count++;
+// 	}
 
-	for (auto& state : m_mooreTable)
-	{
-		std::string stateId = mooreStateToMealyState.at(state.first);
+// 	for (auto& state : m_mooreTable)
+// 	{
+// 		std::string stateId = mooreStateToMealyState.at(state.first);
 
-		std::map<std::string, MealyMachineTable::MealyTransition> mealyTransitions;
-		for (auto& mooreTransition : state.second)
-		{
-			mealyTransitions[mooreTransition.first] = std::make_pair(mooreStateToMealyState[mooreTransition.second], m_states.at(mooreTransition.second));
-		}
+// 		std::map<std::string, MealyMachineTable::MealyTransition> mealyTransitions;
+// 		for (auto& mooreTransition : state.second)
+// 		{
+// 			mealyTransitions[mooreTransition.first] = std::make_pair(mooreStateToMealyState[mooreTransition.second], m_states.at(mooreTransition.second));
+// 		}
 
-		mealyTable.m_mealyTable[stateId] = mealyTransitions;
-	}
+// 		mealyTable.m_mealyTable[stateId] = mealyTransitions;
+// 	}
 
-	mealyTable.m_inputSignalIds = m_inputSignalIds;
+// 	mealyTable.m_inputSignalIds = m_inputSignalIds;
 
-	return mealyTable;
-}
+// 	return mealyTable;
+// }
 

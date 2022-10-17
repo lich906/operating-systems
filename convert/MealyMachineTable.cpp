@@ -53,50 +53,50 @@ void MealyMachineTable::ReadFromCsvFile(const std::string& fileName, const char 
 	}
 }
 
-MooreMachineTable MealyMachineTable::ConvertToMoore(const char stateSymbol) const
-{
-	MooreMachineTable mooreTable;
+// MooreMachineTable MealyMachineTable::ConvertToMoore(const char stateSymbol) const
+// {
+// 	MooreMachineTable mooreTable;
 
-	std::map<MealyTransition, std::string> mealyTransToMooreStates;
+// 	std::map<MealyTransition, std::string> mealyTransToMooreStates;
 
-	std::map<std::string, std::string> mooreStatesToMealyStates;
+// 	std::map<std::string, std::string> mooreStatesToMealyStates;
 
-	int count = 0;
-	for (const auto& stateTransitions : m_mealyTable)
-	{
-		for(auto& transition : stateTransitions.second)
-		{
-			if (mealyTransToMooreStates.find(transition.second) == mealyTransToMooreStates.end())
-			{
-				std::string stateId = stateSymbol + std::to_string(count);
+// 	int count = 0;
+// 	for (const auto& stateTransitions : m_mealyTable)
+// 	{
+// 		for(auto& transition : stateTransitions.second)
+// 		{
+// 			if (mealyTransToMooreStates.find(transition.second) == mealyTransToMooreStates.end())
+// 			{
+// 				std::string stateId = stateSymbol + std::to_string(count);
 
-				mealyTransToMooreStates[transition.second] = stateId;
-				mooreStatesToMealyStates[stateId] = transition.second.first;
-				mooreTable.m_states[stateId] = transition.second.second;
+// 				mealyTransToMooreStates[transition.second] = stateId;
+// 				mooreStatesToMealyStates[stateId] = transition.second.first;
+// 				mooreTable.m_states[stateId] = transition.second.second;
 
-				count++;
-			}
-		}
-	}
+// 				count++;
+// 			}
+// 		}
+// 	}
 
-	for (auto& mooreState : mooreTable.m_states)
-	{
-		auto mealyState = mooreStatesToMealyStates[mooreState.first];
+// 	for (auto& mooreState : mooreTable.m_states)
+// 	{
+// 		auto mealyState = mooreStatesToMealyStates[mooreState.first];
 
-		std::map<std::string, std::string> mooreTransitions;
+// 		std::map<std::string, std::string> mooreTransitions;
 
-		for (auto& mealyTransitions : m_mealyTable.at(mealyState))
-		{
-			mooreTransitions[mealyTransitions.first] = mealyTransToMooreStates[mealyTransitions.second];
-		}
+// 		for (auto& mealyTransitions : m_mealyTable.at(mealyState))
+// 		{
+// 			mooreTransitions[mealyTransitions.first] = mealyTransToMooreStates[mealyTransitions.second];
+// 		}
 
-		mooreTable.m_mooreTable[mooreState.first] = mooreTransitions;
-	}
+// 		mooreTable.m_mooreTable[mooreState.first] = mooreTransitions;
+// 	}
 
-	mooreTable.m_inputSignalIds = m_inputSignalIds;
+// 	mooreTable.m_inputSignalIds = m_inputSignalIds;
 
-	return mooreTable;
-}
+// 	return mooreTable;
+// }
 
 void MealyMachineTable::PrintToCsvFile(const std::string& fileName, const char sep) const
 {

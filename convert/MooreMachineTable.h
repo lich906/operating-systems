@@ -15,7 +15,36 @@ public:
 
 	void PrintToCsvFile(const std::string& fileName, const char sep = ';') const;
 
-	MealyMachineTable ConvertToMealy(const char stateSymbol = 's') const;
+	template <typename Mealy>
+	Mealy ConvertToMealy(const char stateSymbol = 's') const
+	{
+		Mealy mealyTable;
+
+		std::map<std::string, std::string> mooreStateToMealyState;
+		size_t count = 0;
+		for (auto& state : m_states)
+		{
+			mooreStateToMealyState[state.first] = stateSymbol + std::to_string(count);
+			count++;
+		}
+
+		for (auto& state : m_mooreTable)
+		{
+			std::string stateId = mooreStateToMealyState.at(state.first);
+
+			std::map<std::string, typename Mealy::MealyTransition> mealyTransitions;
+			for (auto& mooreTransition : state.second)
+			{
+				mealyTransitions[mooreTransition.first] = std::make_pair(mooreStateToMealyState[mooreTransition.second], m_states.at(mooreTransition.second));
+			}
+
+			mealyTable.m_mealyTable[stateId] = mealyTransitions;
+		}
+
+		mealyTable.m_inputSignalIds = m_inputSignalIds;
+
+		return mealyTable;
+	}
 
 private:
 	/*

@@ -17,7 +17,7 @@ try
 		{
 			MealyMachineTable mealy;
 			mealy.ReadFromCsvFile(argsParser.GetInputFileName());
-			MooreMachineTable moore = mealy.ConvertToMoore();
+			MooreMachineTable moore = mealy.ConvertToMoore<MooreMachineTable>();
 			moore.PrintToCsvFile(argsParser.GetOutputFileName());
 		}
 		break;
@@ -25,7 +25,7 @@ try
 		{
 			MooreMachineTable moore;
 			moore.ReadFromCsvFile(argsParser.GetInputFileName());
-			MealyMachineTable mealy = moore.ConvertToMealy();
+			MealyMachineTable mealy = moore.ConvertToMealy<MealyMachineTable>();
 			mealy.PrintToCsvFile(argsParser.GetOutputFileName());
 		}
 		break;

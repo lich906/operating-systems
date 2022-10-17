@@ -17,7 +17,51 @@ public:
 
 	void ReadFromCsvFile(const std::string& fileName, const char sep = ';');
 
-	MooreMachineTable ConvertToMoore(const char stateSymbol = 's') const;
+	template<typename Moore>
+	Moore ConvertToMoore(const char stateSymbol = 's') const
+	{
+		Moore mooreTable;
+
+		std::map<MealyTransition, std::string> mealyTransToMooreStates;
+
+		std::map<std::string, std::string> mooreStatesToMealyStates;
+
+		int count = 0;
+		for (const auto& stateTransitions : m_mealyTable)
+		{
+			for(auto& transition : stateTransitions.second)
+			{
+				if (mealyTransToMooreStates.find(transition.second) == mealyTransToMooreStates.end())
+				{
+					std::string stateId = stateSymbol + std::to_string(count);
+
+					mealyTransToMooreStates[transition.second] = stateId;
+					mooreStatesToMealyStates[stateId] = transition.second.first;
+					mooreTable.m_states[stateId] = transition.second.second;
+
+					count++;
+				}
+			}
+		}
+
+		for (auto& mooreState : mooreTable.m_states)
+		{
+			auto mealyState = mooreStatesToMealyStates[mooreState.first];
+
+			std::map<std::string, std::string> mooreTransitions;
+
+			for (auto& mealyTransitions : m_mealyTable.at(mealyState))
+			{
+				mooreTransitions[mealyTransitions.first] = mealyTransToMooreStates[mealyTransitions.second];
+			}
+
+			mooreTable.m_mooreTable[mooreState.first] = mooreTransitions;
+		}
+
+		mooreTable.m_inputSignalIds = m_inputSignalIds;
+
+		return mooreTable;
+	}
 
 	void PrintToCsvFile(const std::string& fileName, const char sep = ';') const;
 
