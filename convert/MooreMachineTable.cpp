@@ -14,7 +14,7 @@ void MooreMachineTable::ReadFromCsvFile(const std::string& fileName, const char 
 
 	for (std::string line; std::getline(file, line);)
 	{
-		fileStrings.push_back(std::istringstream(line));
+		fileStrings.emplace_back(std::move(std::istringstream(line)));
 	}
 
 	while (!fileStrings[0].eof())
