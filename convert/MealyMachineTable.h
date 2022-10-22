@@ -7,12 +7,6 @@
 class MealyMachineTable
 {
 public:
-	/*
-	* first -- next state id
-	* second -- output signal id
-	*/
-	using MealyTransition = std::pair<std::string, std::string>;
-
 	friend class MooreMachineTable;
 
 	void ReadFromCsvFile(const std::string& fileName, const char sep = ';');
@@ -22,40 +16,40 @@ public:
 	{
 		Moore mooreTable;
 
-		std::map<MealyTransition, std::string> mealyTransToMooreStates;
+		std::unordered_map<struct MealyTransition, std::string, MealyTransitionHash> mealyTransToMooreStates;
 
-		std::map<std::string, std::string> mooreStatesToMealyStates;
+		std::unordered_map<std::string, std::string> mooreStatesToMealyStates;
 
 		int count = 0;
 		for (const auto& stateTransitions : m_mealyTable)
 		{
-			for(auto& transition : stateTransitions.second)
+			for(auto& transition : stateTransitions.second.transitions)
 			{
 				if (mealyTransToMooreStates.find(transition.second) == mealyTransToMooreStates.end())
 				{
-					std::string stateId = stateSymbol + std::to_string(count);
+					std::string stateName = stateSymbol + std::to_string(count);
 
-					mealyTransToMooreStates[transition.second] = stateId;
-					mooreStatesToMealyStates[stateId] = transition.second.first;
-					mooreTable.m_states[stateId] = transition.second.second;
+					mealyTransToMooreStates[transition.second] = stateName;
+					mooreStatesToMealyStates[stateName] = transition.second.nextState;
+					mooreTable.m_mooreTable[stateName] = { transition.second.outputSignal, {} };
 
 					count++;
 				}
 			}
 		}
 
-		for (auto& mooreState : mooreTable.m_states)
+		for (auto& mooreState : mooreTable.m_mooreTable)
 		{
 			auto mealyState = mooreStatesToMealyStates[mooreState.first];
 
 			std::map<std::string, std::string> mooreTransitions;
 
-			for (auto& mealyTransitions : m_mealyTable.at(mealyState))
+			for (auto& mealyTransition : m_mealyTable.at(mealyState).transitions)
 			{
-				mooreTransitions[mealyTransitions.first] = mealyTransToMooreStates[mealyTransitions.second];
+				mooreTransitions[mealyTransition.first] = mealyTransToMooreStates[mealyTransition.second];
 			}
 
-			mooreTable.m_mooreTable[mooreState.first] = mooreTransitions;
+			mooreTable.m_mooreTable[mooreState.first].transitions = mooreTransitions;
 		}
 
 		mooreTable.m_inputSignalIds = m_inputSignalIds;
@@ -66,21 +60,37 @@ public:
 	void PrintToCsvFile(const std::string& fileName, const char sep = ';') const;
 
 private:
-	/*
-	* key -- state id
-	* value -- map {
-	*     key -- input signal id
-	*     value -- pair {
-	*         first -- next state
-	*         second -- output signal
-	*     }
-	* }
-	*/
-	std::map<std::string, std::map<std::string, MealyTransition>> m_mealyTable;
+	struct MealyTransition
+	{
+		std::string nextState;
+		std::string outputSignal;
+
+		bool operator==(const MealyTransition& other) const
+		{
+			return nextState == other.nextState && outputSignal == other.outputSignal;
+		}
+	};
+
+	struct MealyTransitionHash
+	{
+		std::size_t operator()(const MealyTransition& object) const noexcept
+		{
+			std::size_t h1 = std::hash<std::string>{}(object.nextState);
+			std::size_t h2 = std::hash<std::string>{}(object.outputSignal);
+			return h1 ^ (h2 << 1);
+		}
+	};
+
+	struct MealyState
+	{
+		std::map<std::string, MealyMachineTable::MealyTransition> transitions;
+	};
+	
+	std::map<std::string, MealyMachineTable::MealyState> m_mealyTable;
 
 	std::vector<std::string> m_inputSignalIds;
 
-	static MealyTransition ParseMealyTransition(std::string str);
+	static MealyTransition ParseMealyTransition(const std::string& str);
 };
 
 #endif

@@ -13,13 +13,13 @@ void MealyMachineTable::ReadFromCsvFile(const std::string& fileName, const char 
 
 	for (std::string line; std::getline(file, line); )
 	{
-		fileStrings.push_back(std::istringstream(line));
+		fileStrings.emplace_back(std::move(std::istringstream(line)));
 	}
 
 	while (!fileStrings[0].eof())
 	{
 		std::vector<std::string> column;
-		std::string colName;
+		std::string stateName;
 
 		for (size_t i = 0; i < fileStrings.size(); i++)
 		{
@@ -27,28 +27,28 @@ void MealyMachineTable::ReadFromCsvFile(const std::string& fileName, const char 
 			std::getline(fileStrings[i], item, sep);
 
 			if (i == 0)
-				colName = item;
+				stateName = item;
 			else
 				column.push_back(item);
 		}
 
-		if (colName.empty() || colName == " ")
+		if (stateName.empty() || stateName == " ")
 		{
 			m_inputSignalIds = column;
 		}
 		else
 		{
-			std::map<std::string, MealyTransition> transitions;
+			MealyState state;
 
 			size_t i = 0;
 			for (const auto& transitionStr : column)
 			{
 				MealyTransition transition = ParseMealyTransition(transitionStr);
-				transitions[m_inputSignalIds[i]] = transition;
+				state.transitions[m_inputSignalIds[i]] = transition;
 				i++;
 			}
 
-			m_mealyTable[colName] = transitions;
+			m_mealyTable[stateName] = state;
 		}
 	}
 }
@@ -62,23 +62,21 @@ void MealyMachineTable::PrintToCsvFile(const std::string& fileName, const char s
 		throw std::runtime_error("File " + fileName + " not found.");
 	}
 
-	std::vector<std::string> strings;
-
-	strings.push_back(std::string());
+	std::vector<std::string> strings({ {} });
 
 	for (auto& inputSignalId : m_inputSignalIds)
 	{
 		strings.push_back(inputSignalId);
 	}
 
-	for (auto& [stateName, transitions] : m_mealyTable)
+	for (auto& [stateName, state] : m_mealyTable)
 	{
 		strings[0].append(sep + stateName);
 
 		size_t i = 1;
-		for (auto& transition : transitions)
+		for (auto& transition : state.transitions)
 		{
-			strings[i].append(sep + transition.second.first + '/' + transition.second.second);
+			strings[i].append(sep + transition.second.nextState + '/' + transition.second.outputSignal);
 			i++;
 		}
 	}
@@ -87,9 +85,9 @@ void MealyMachineTable::PrintToCsvFile(const std::string& fileName, const char s
 		file << string << std::endl;
 }
 
-MealyMachineTable::MealyTransition MealyMachineTable::ParseMealyTransition(std::string str)
+MealyMachineTable::MealyTransition MealyMachineTable::ParseMealyTransition(const std::string& str)
 {
 	size_t delimPos = str.find('/');
 
-	return std::make_pair(str.substr(0, delimPos), str.substr(delimPos + 1));
+	return { str.substr(0, delimPos), str.substr(delimPos + 1) };
 }

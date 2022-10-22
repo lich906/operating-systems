@@ -50,9 +50,7 @@ void MooreMachineTable::ReadFromCsvFile(const std::string& fileName, const char 
 				i++;
 			}
 
-			m_mooreTable[stateName] = transitions;
-
-			m_states[stateName] = stateOutputSignal;
+			m_mooreTable[stateName] = { stateOutputSignal, transitions };
 		}
 	}
 }
@@ -66,25 +64,22 @@ void MooreMachineTable::PrintToCsvFile(const std::string& fileName, const char s
 		throw std::runtime_error("File " + fileName + " not found.");
 	}
 
-	std::vector<std::string> strings;
-
-	strings.push_back(std::string());
-	strings.push_back(std::string());
+	std::vector<std::string> strings({ {}, {} });
 
 	for (auto& inputSignalId : m_inputSignalIds)
 	{
 		strings.push_back(inputSignalId);
 	}
 
-	for (auto& state : m_states)
+	for (auto& state : m_mooreTable)
 	{
-		strings[0].append(sep + state.second);
+		strings[0].append(sep + state.second.outputSignal);
 		strings[1].append(sep + state.first);
 
 		size_t i = 2;
-		for (auto& transitions : m_mooreTable.at(state.first))
+		for (auto& transition : state.second.transitions)
 		{
-			strings[i].append(sep + transitions.second);
+			strings[i].append(sep + transition.second);
 			i++;
 		}
 	}
