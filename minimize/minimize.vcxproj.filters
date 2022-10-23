@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Mealy">
+      <UniqueIdentifier>{eb8f5bc4-cf8d-4915-9468-e96942f7fe14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Moore">
+      <UniqueIdentifier>{2867a414-6ad8-42de-91f6-528750b3d1b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Mealy">
+      <UniqueIdentifier>{02b04bc4-1102-4a3c-a5a3-4729bce6ff0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Moore">
+      <UniqueIdentifier>{94452844-f501-41ee-bea3-972987d52f26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Common">
+      <UniqueIdentifier>{cdfbaf9a-d60b-4aae-a7e5-4f431410547e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Common\Abstract">
+      <UniqueIdentifier>{f22cdc72-fe5a-4a5a-af1d-66d5deb4d7cf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MealyTransition.cpp">
+      <Filter>Source Files\Mealy</Filter>
+    </ClCompile>
+    <ClCompile Include="MooreMachine.cpp">
+      <Filter>Source Files\Moore</Filter>
+    </ClCompile>
+    <ClCompile Include="MealyMachine.cpp">
+      <Filter>Source Files\Mealy</Filter>
+    </ClCompile>
+    <ClCompile Include="MealyState.cpp">
+      <Filter>Source Files\Mealy</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgramArguments.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MooreState.cpp">
+      <Filter>Source Files\Moore</Filter>
+    </ClCompile>
+    <ClCompile Include="MooreTransition.cpp">
+      <Filter>Source Files\Moore</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MooreMachine.h">
+      <Filter>Header Files\Moore</Filter>
+    </ClInclude>
+    <ClInclude Include="MealyMachine.h">
+      <Filter>Header Files\Mealy</Filter>
+    </ClInclude>
+    <ClInclude Include="MealyTransition.h">
+      <Filter>Header Files\Mealy</Filter>
+    </ClInclude>
+    <ClInclude Include="MealyState.h">
+      <Filter>Header Files\Mealy</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgramArguments.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MooreState.h">
+      <Filter>Header Files\Moore</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachineMinimizer.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="MooreTransition.h">
+      <Filter>Header Files\Moore</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractState.h">
+      <Filter>Header Files\Common\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.h">
+      <Filter>Header Files\Common\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonMachineAlgorithm.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractTransition.hpp">
+      <Filter>Header Files\Common\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
