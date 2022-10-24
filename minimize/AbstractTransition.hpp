@@ -3,7 +3,7 @@
 
 #include "common.h"
 
-template <typename StatePtr>
+template <typename StateT>
 class AbstractTransition
 {
 public:
@@ -12,22 +12,22 @@ public:
 		return m_nextStateName;
 	}
 
-	void SetNextStatePtr(StatePtr* ptr)
+	void SetNextStatePtr(StateT* ptr)
 	{
 		m_nextStatePtr = ptr;
 	}
 
-	void SetNextStatePtr(StatePtr& ptr)
+	void SetNextStatePtr(StateT& ptr)
 	{
 		m_nextStatePtr = std::addressof(ptr);
 	}
 
-	StatePtr* operator->()
+	StateT* operator->()
 	{
 		return m_nextStatePtr;
 	}
 
-	const StatePtr* operator->() const
+	const StateT* operator->() const
 	{
 		return m_nextStatePtr;
 	}
@@ -44,7 +44,7 @@ protected:
 		: m_nextStateName(nextStateName){}
 
 	std::string m_nextStateName{};
-	StatePtr* m_nextStatePtr = nullptr;
+	StateT* m_nextStatePtr = nullptr;
 };
 
 #endif // !ABSTRACT_TRANSITION_H

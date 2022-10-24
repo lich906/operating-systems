@@ -7,6 +7,8 @@ void MooreMachine::ReadFromCsvFile(const std::string& fileName, const char sep)
 	if (!file.is_open())
 		throw std::runtime_error("File " + fileName + " not found.");
 
+	Logger::Log(std::cout, "Reading moore machine from file '" + fileName + "'...");
+
 	std::vector<std::istringstream> fileStrings;
 
 	for (std::string line; std::getline(file, line);)
@@ -50,15 +52,14 @@ void MooreMachine::ReadFromCsvFile(const std::string& fileName, const char sep)
 			{
 				MooreTransition transition(nextStateName);
 
-				// Wire states through transition
 				auto nextStateIt = m_states.find(transition.GetNextStateName());
 				if (nextStateIt != m_states.end())
 				{
-					Logger::Log(std::cout, "Wiring state '" + stateName + "' with '" + nextStateIt->second.GetName() + "'");
+					Logger::Log(std::cout, "Threading states... '" + stateName + "' ---" + m_inputSignals[i] + "--> '" + nextStateIt->second.GetName() + "'");
 					transition.SetNextStatePtr(nextStateIt->second);
 				}
 
-				Logger::Log(std::cout, "Added transition to '" + transition.GetNextStateName() + "' by input signal '" + m_inputSignals[i] + "' for state '" + state.GetName() + "'");
+				Logger::Log(std::cout, "Creating transition... '" + state.GetName() + "' ---" + m_inputSignals[i] + "--> '" + transition.GetNextStateName() + "'");
 				state.AddTransition(m_inputSignals[i], transition);
 				i++;
 			}
@@ -68,8 +69,6 @@ void MooreMachine::ReadFromCsvFile(const std::string& fileName, const char sep)
 		}
 	}
 
-	// Wire states after reading entire file
-	Logger::Log(std::cout, "Post wiring...");
 	CommonMachineAlgorithm::ThreadStates(m_states, m_inputSignals);
 }
 
@@ -117,7 +116,7 @@ void MooreMachine::LabelStatesByZeroEquivalenceClass()
 	for (auto& [stateName, state] : m_states)
 	{
 		state.SetLabel(std::hash<std::string>()(state.GetOutputSignal()));
-		Logger::Log(std::cout, stateName + " {" + LabelToString(state.GetLabel()) + "}");
+		Logger::Log(std::cout, "Labeling state with hash... '" + stateName + "' --> " + state.GetLabel().str());
 	}
 }
 

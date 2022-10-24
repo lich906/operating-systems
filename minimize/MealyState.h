@@ -3,9 +3,9 @@
 
 #include "common.h"
 #include "MealyTransition.h"
-#include "AbstractState.h"
+#include "AbstractState.hpp"
 
-class MealyState : public AbstractState
+class MealyState : public AbstractState<MealyTransition>
 {
 public:
 	MealyState() = default;
@@ -17,11 +17,6 @@ public:
 	MealyTransition& GetTransition(const std::string& inputSignal);
 
 	const MealyTransition& GetTransition(const std::string& inputSignal) const;
-private:
-	/*
-	Key is an input signal name
-	*/
-	std::unordered_map<std::string, MealyTransition> m_transitions{};
 };
 
 #endif // !MEALY_STATE_H

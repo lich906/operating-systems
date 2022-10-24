@@ -3,17 +3,48 @@
 
 #include "common.h"
 
-using LabelType = std::size_t;
+class Label
+{
+public:
+	Label() = default;
+
+	Label(std::size_t value)
+		: m_value(std::move(value)) {}
+
+	operator std::size_t&()
+	{
+		return m_value;
+	}
+
+	operator const std::size_t&() const
+	{
+		return m_value;
+	}
+
+	std::string str() const
+	{
+		std::stringstream ss;
+		ss << std::hex << m_value;
+		return "{" + ss.str().substr(0, 8) + "}";
+	}
+
+private:
+	std::size_t m_value{};
+};
+
+template <>
+struct std::hash<Label>
+{
+	std::size_t operator()(const Label& l) const noexcept
+	{
+		return std::hash<std::size_t>()(l);
+	}
+};
 
 namespace StateLabel
 {
-const LabelType Unreachable = -1;
-const LabelType Reachable = 0;
+const Label Unreachable = -1;
+const Label Reachable = 0;
 }; // namespace StateLabel
-
-inline std::string LabelToString(const LabelType& label)
-{
-	return std::to_string(label).substr(0, 4);
-}
 
 #endif // !LABELED_STATE_H

@@ -57,9 +57,6 @@
     <ClCompile Include="MooreTransition.cpp">
       <Filter>Source Files\Moore</Filter>
     </ClCompile>
-    <ClCompile Include="AbstractState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -92,7 +89,7 @@
     <ClInclude Include="MooreTransition.h">
       <Filter>Header Files\Moore</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractState.h">
+    <ClInclude Include="AbstractState.hpp">
       <Filter>Header Files\Common\Abstract</Filter>
     </ClInclude>
     <ClInclude Include="Label.h">

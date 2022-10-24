@@ -142,7 +142,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AbstractState.cpp" />
     <ClCompile Include="MealyMachine.cpp" />
     <ClCompile Include="MealyState.cpp" />
     <ClCompile Include="MealyTransition.cpp" />
@@ -153,7 +152,7 @@
     <ClCompile Include="ProgramArguments.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AbstractState.h" />
+    <ClInclude Include="AbstractState.hpp" />
     <ClInclude Include="AbstractTransition.hpp" />
     <ClInclude Include="CommonMachineAlgorithm.hpp" />
     <ClInclude Include="Constants.h" />

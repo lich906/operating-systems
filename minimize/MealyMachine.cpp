@@ -7,7 +7,7 @@ void MealyMachine::ReadFromCsvFile(const std::string& fileName, const char sep)
 	if (!file.is_open())
 		throw std::runtime_error("File " + fileName + " not found.");
 
-	Logger::Log(std::cout, "Reading mealy machine from file '" + fileName + "'");
+	Logger::Log(std::cout, "Reading mealy machine from file '" + fileName + "'...");
 
 	std::vector<std::istringstream> fileStrings;
 
@@ -50,26 +50,23 @@ void MealyMachine::ReadFromCsvFile(const std::string& fileName, const char sep)
 			{
 				MealyTransition transition = ParseMealyTransition(transitionStr);
 
-				// Wire states through transition
 				auto nextStateIt = m_states.find(transition.GetNextStateName());
 				if (nextStateIt != m_states.end())
 				{
-					Logger::Log(std::cout, "Wiring state '" + stateName + "' with '" + nextStateIt->second.GetName() + "'");
+					Logger::Log(std::cout, "Threading states... '" + state.GetName() + "' ---" + m_inputSignals[i] + '/' + transition.GetOutputSignal() + "--> '" + nextStateIt->second.GetName() + "'");
 					transition.SetNextStatePtr(nextStateIt->second);
 				}
 
-				Logger::Log(std::cout, "Added transition to '"+ transition.GetNextStateName() +"' by input signal '" + m_inputSignals[i] + "' for state '" + state.GetName() + "'");
+				Logger::Log(std::cout, "Creating transition... '" + state.GetName() + "' ---" + m_inputSignals[i] + '/' + transition.GetOutputSignal() + "--> '" + transition.GetNextStateName() + "'");
 				state.AddTransition(m_inputSignals[i], transition);
 				i++;
 			}
 
-			Logger::Log(std::cout, "State '" + state.GetName() + "' created");
+			Logger::Log(std::cout, "State '" + state.GetName() + "' created.");
 			m_states[stateName] = std::move(state);
 		}
 	}
 
-	// Wire states after reading entire file
-	Logger::Log(std::cout, "Post wiring...");
 	CommonMachineAlgorithm::ThreadStates(m_states, m_inputSignals);
 }
 
@@ -120,7 +117,7 @@ void MealyMachine::LabelStatesByFirstEquivalenñåClass()
 			allOutputSignals += state.GetTransition(inputSignal).GetOutputSignal();
 		
 		state.SetLabel(std::hash<std::string>()(allOutputSignals));
-		Logger::Log(std::cout, stateName + " {" + LabelToString(state.GetLabel()) + "}");
+		Logger::Log(std::cout, "Labeling state with hash... '" + stateName + "' -->>> " + state.GetLabel().str());
 	}
 }
 

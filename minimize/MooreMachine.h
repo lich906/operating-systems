@@ -9,9 +9,9 @@
 class MooreMachine
 {
 public:
-	void ReadFromCsvFile(const std::string& fileName, const char sep = ';');
+	void ReadFromCsvFile(const std::string& fileName, const char sep = Constants::CSV_FILE_SEPARATOR);
 
-	void PrintToCsvFile(const std::string& fileName, const char sep = ';') const;
+	void PrintToCsvFile(const std::string& fileName, const char sep = Constants::CSV_FILE_SEPARATOR) const;
 
 	void Minimize();
 

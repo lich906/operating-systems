@@ -3,9 +3,9 @@
 
 #include "common.h"
 #include "MooreTransition.h"
-#include "AbstractState.h"
+#include "AbstractState.hpp"
 
-class MooreState : public AbstractState
+class MooreState : public AbstractState<MooreTransition>
 {
 public:
 	MooreState() = default;
@@ -14,19 +14,8 @@ public:
 
 	const std::string& GetOutputSignal() const;
 
-	void AddTransition(const std::string& inputSignal, const MooreTransition& transition);
-
-	MooreTransition& GetTransition(const std::string& inputSignal);
-
-	const MooreTransition& GetTransition(const std::string& inputSignal) const;
-
 private:
 	std::string m_outputSignal{};
-
-	/*
-	Key is an input signal name
-	*/
-	std::unordered_map<std::string, MooreTransition> m_transitions{};
 };
 
 #endif // !MOORE_STATE_H

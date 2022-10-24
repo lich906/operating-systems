@@ -10,6 +10,7 @@ public:
 	template <typename T>
 	static void ThreadStates(std::unordered_map<std::string, T>& states, const std::vector<std::string>& inputSignals)
 	{
+		Logger::Log(std::cout, "Threading states...");
 		for (auto& [stateName, state] : states)
 		{
 			for (const auto& inputSignal : inputSignals)
@@ -17,7 +18,7 @@ public:
 				auto& tr = state.GetTransition(inputSignal);
 				if (!tr.HaveNextStatePointer())
 				{
-					Logger::Log(std::cout, "Wiring state '" + state.GetName() + "' with '" + tr.GetNextStateName() + "'");
+					Logger::Log(std::cout, "Threading states... '" + state.GetName() + "' ---" + inputSignal + "--> '" + tr.GetNextStateName() + "'");
 					tr.SetNextStatePtr(states.find(tr.GetNextStateName())->second);
 				}
 			}
@@ -43,7 +44,7 @@ public:
 			if (it == stateNamesToMinStateNames.end())
 			{
 				stateNamesToMinStateNames[state.GetName()] = hashToMinStateNames[state.GetLabel()];
-				Logger::Log(std::cout, "Map state '" + state.GetName() + "' to '" + stateNamesToMinStateNames.at(state.GetName()) + "'");
+				Logger::Log(std::cout, "Mapping state to minimized state... '" + state.GetName() + "' --> '" + stateNamesToMinStateNames.at(state.GetName()) + "'");
 			}
 		}
 
@@ -52,9 +53,9 @@ public:
 
 private:
 	template <typename T>
-	static std::unordered_map<LabelType, std::string> MapLabelsToMinimizedNames(const std::unordered_map<std::string, T>& states)
+	static std::unordered_map<Label, std::string> MapLabelsToMinimizedNames(const std::unordered_map<std::string, T>& states)
 	{
-		std::unordered_map<LabelType, std::string> labelsToMinStateNames;
+		std::unordered_map<Label, std::string> labelsToMinStateNames;
 		size_t count = 0;
 		for (auto& [stateName, state] : states)
 		{
@@ -64,7 +65,7 @@ private:
 			{
 				labelsToMinStateNames[label] = Constants::MINIMIZED_STATE_LETTER + std::to_string(count);
 				++count;
-				Logger::Log(std::cout, "Map hash {" + LabelToString(label) + "} to '" + labelsToMinStateNames.at(label) + "'");
+				Logger::Log(std::cout, "Map hash to minimized state " + label.str() + " >>>-- '" + labelsToMinStateNames.at(label) + "'");
 			}
 		}
 
