@@ -7,6 +7,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "minimize", "minimize\minimi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "convert", "convert\convert.vcxproj", "{50176B06-6254-43B4-9696-16F5B5DB89B1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EEBD9597-3581-4D5B-B4E2-6D64FB7E33D0}"
+	ProjectSection(SolutionItems) = preProject
+		machinegen.py = machinegen.py
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
