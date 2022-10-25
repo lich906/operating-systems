@@ -16,7 +16,7 @@ public:
 	void Minimize();
 
 private:
-	void LabelStatesByFirstEquivalenñåClass();
+	void LabelStatesByFirstEquivalenceClass();
 
 	void RebuildMinimizedMachine();
 

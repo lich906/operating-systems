@@ -102,12 +102,12 @@ void MealyMachine::PrintToCsvFile(const std::string& fileName, const char sep) c
 void MealyMachine::Minimize()
 {
 	MachineMinimizer::RemoveUnreachableStates(m_states, m_inputSignals, m_initialStateName);
-	LabelStatesByFirstEquivalenñåClass();
+	LabelStatesByFirstEquivalenceClass();
 	MachineMinimizer::LabelEquivalentStates(m_states, m_inputSignals);
 	RebuildMinimizedMachine();
 }
 
-void MealyMachine::LabelStatesByFirstEquivalenñåClass()
+void MealyMachine::LabelStatesByFirstEquivalenceClass()
 {
 	Logger::Log(std::cout, "Labeling states by first equivalence class...");
 	for (auto& [stateName, state] : m_states)
