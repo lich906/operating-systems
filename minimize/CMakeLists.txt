@@ -18,7 +18,7 @@ set(Header_Files__Common
 source_group("Header Files\\Common" FILES ${Header_Files__Common})
 
 set(Header_Files__Common__Abstract
-    "AbstractState.h"
+    "AbstractState.hpp"
     "AbstractTransition.hpp"
     "Label.h"
 )
@@ -39,7 +39,6 @@ set(Header_Files__Moore
 source_group("Header Files\\Moore" FILES ${Header_Files__Moore})
 
 set(Source_Files
-    "AbstractState.cpp"
     "main.cpp"
     "ProgramArguments.cpp"
 )
