@@ -6,9 +6,25 @@ State::State(const std::string name, bool isFinal)
 {
 }
 
-void State::AddTransition(const std::string& signalName, State* transition)
+void State::AddTransition(const std::string& signal, State* transition)
 {
-	m_transitions[signalName].insert(transition);
+	m_transitions[signal].insert(transition);
+}
+
+std::set<State*> State::Transition(const std::string& signal)
+{
+	std::set<State*> result;
+
+	for (auto& statePart : GetClosedState())
+	{
+		for (auto& transition : statePart->m_transitions[signal])
+		{
+			auto closedTransition = transition->GetClosedState();
+			result.insert(closedTransition.begin(), closedTransition.end());
+		}
+	}
+
+	return result;
 }
 
 std::string State::GetName() const
@@ -19,4 +35,41 @@ std::string State::GetName() const
 bool State::IsFinal() const
 {
 	return m_final;
+}
+
+std::set<State*> State::GetClosedState()
+{
+	std::set<State*> result;
+	result.insert(this);
+	GetClosedStateImpl(result);
+	return result;
+}
+
+void State::GetClosedStateImpl(std::set<State*>& result)
+{
+	for (auto& closedState : m_transitions[EmptySignal])
+	{
+		if (!result.contains(closedState))
+		{
+			result.insert(closedState);
+			closedState->GetClosedStateImpl(result);
+		}
+	}
+}
+
+std::ostream& operator<<(std::ostream& out, const std::set<State*>& states)
+{
+	if (!states.empty())
+	{
+		out << (*states.begin())->GetName();
+		for (auto it = std::next(states.begin()); it != states.end(); ++it)
+		{
+			out << ',' << (*it)->GetName();
+		}
+	}
+	else
+	{
+		out << NoTransitionsPlaceholder;
+	}
+	return out;
 }

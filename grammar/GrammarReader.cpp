@@ -63,6 +63,8 @@ Machine GrammarReader::ReadLeftGrammar()
 					machine.AddState(std::move(initialState));
 					machine.SetInitialStateName(InitialStateName);
 				}
+
+				machine.AddSignal(variant);
 			}
 			break;
 			case 2:
@@ -84,6 +86,8 @@ Machine GrammarReader::ReadLeftGrammar()
 					newState->AddTransition(signalName, destState.get());
 					machine.AddState(std::move(newState));
 				}
+
+				machine.AddSignal(signalName);
 			}
 			break;
 			default:
@@ -130,27 +134,31 @@ Machine GrammarReader::ReadRightGrammar()
 					machine.AddState(std::move(finalState));
 					finalStateCreated = true;
 				}
+
+				machine.AddSignal(variant);
 			}
 			break;
 			case 2:
 			{
-				std::string signalName(1, variant[0]);
+				std::string signal(1, variant[0]);
 				std::string stateName(1, variant[1]);
 
 				if (stateName == srcState->GetName())
 				{
-					srcState->AddTransition(signalName, srcState.get());
+					srcState->AddTransition(signal, srcState.get());
 				}
 				else if (auto& existingState = machine.GetState(stateName))
 				{
-					srcState->AddTransition(signalName, existingState.get());
+					srcState->AddTransition(signal, existingState.get());
 				}
 				else
 				{
 					auto newState = std::make_unique<State>(stateName, false);
-					srcState->AddTransition(signalName, newState.get());
+					srcState->AddTransition(signal, newState.get());
 					machine.AddState(std::move(newState));
 				}
+
+				machine.AddSignal(signal);
 			}
 			break;
 			default:
