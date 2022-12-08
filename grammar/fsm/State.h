@@ -13,6 +13,7 @@ namespace constants
 
 const std::string EmptySignal = "e";
 const std::string NoTransitionsPlaceholder = "-";
+const char StatesSeparator = ',';
 
 } // namespace constants
 

@@ -66,12 +66,13 @@ std::ostream& fsm::operator<<(std::ostream& out, const std::set<State*>& states)
 		out << (*states.begin())->GetName();
 		for (auto it = std::next(states.begin()); it != states.end(); ++it)
 		{
-			out << ',' << (*it)->GetName();
+			out << constants::StatesSeparator << (*it)->GetName();
 		}
 	}
 	else
 	{
 		out << constants::NoTransitionsPlaceholder;
 	}
+
 	return out;
 }
