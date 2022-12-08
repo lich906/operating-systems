@@ -53,6 +53,9 @@
     <ClInclude Include="fsm\io.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="util\string\string.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="left_grammar.txt" />

@@ -161,6 +161,7 @@
     <ClInclude Include="fsm\Machine.h" />
     <ClInclude Include="MachineDeterminer.h" />
     <ClInclude Include="fsm\State.h" />
+    <ClInclude Include="util\string\string.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="left_grammar.txt" />

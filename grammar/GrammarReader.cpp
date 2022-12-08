@@ -1,33 +1,7 @@
 #include "GrammarReader.h"
+#include "util\string\string.hpp"
 
 using namespace fsm;
-
-static inline void RemoveWhitespaces(std::string& str)
-{
-	str.erase(std::remove_if(str.begin(), str.end(), std::isspace), str.end());
-}
-
-static inline std::vector<std::string> Split(const std::string str, char sep)
-{
-	std::vector<std::string> res;
-	std::string cur;
-
-	std::for_each(str.begin(), str.end(), [&](char ch) {
-		if (ch == sep)
-		{
-			res.push_back(cur);
-			cur.clear();
-		}
-		else
-		{
-			cur.push_back(ch);
-		}
-	});
-
-	res.push_back(cur);
-
-	return res;
-}
 
 GrammarReader::GrammarReader(std::istream& input)
 	: m_input(input)
@@ -41,10 +15,10 @@ Machine GrammarReader::ReadLeftGrammar()
 	size_t lineNum = 1;
 	for (std::string line; std::getline(m_input, line); ++lineNum)
 	{
-		RemoveWhitespaces(line);
+		util::string::RemoveWhitespaces(line);
 		std::string leftSideNonterminal(1, line[0]);
 		auto rightSideVariants = std::string(line.begin() + 3, line.end());
-		auto ruleVariants = Split(rightSideVariants, VariantsSeparator);
+		auto ruleVariants = util::string::Split(rightSideVariants, VariantsSeparator);
 
 		auto& destState = machine.AddState(std::make_unique<State>(leftSideNonterminal, lineNum == 1));
 
@@ -109,10 +83,10 @@ Machine GrammarReader::ReadRightGrammar()
 	size_t lineNum = 1;
 	for (std::string line; std::getline(m_input, line); ++lineNum)
 	{
-		RemoveWhitespaces(line);
+		util::string::RemoveWhitespaces(line);
 		std::string leftSideNonterminal(1, line[0]);
 		auto rightSideVariants = std::string(line.begin() + 3, line.end());
-		auto ruleVariants = Split(rightSideVariants, VariantsSeparator);
+		auto ruleVariants = util::string::Split(rightSideVariants, VariantsSeparator);
 
 		auto& srcState = machine.AddState(std::make_unique<State>(leftSideNonterminal, false));
 
