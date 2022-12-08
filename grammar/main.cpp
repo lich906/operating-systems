@@ -62,11 +62,11 @@ try
 		std::ofstream outputFile(*outputFilename);
 		if (!outputFile.is_open())
 			throw std::runtime_error("Failed to open output file.");
-		determinedMachine.PrintAsCsv(outputFile);
+		WriteCsv(outputFile, determinedMachine);
 	}
 	else
 	{
-		determinedMachine.PrintAsCsv(std::cout);
+		WriteCsv(std::cout, determinedMachine);
 	}
 
 	return 0;

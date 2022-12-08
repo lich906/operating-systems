@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="fsm\io.cpp" />
     <ClCompile Include="GrammarReader.cpp" />
     <ClCompile Include="fsm\Machine.cpp" />
     <ClCompile Include="MachineDeterminer.cpp" />
@@ -154,6 +155,7 @@
     <ClCompile Include="fsm\State.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="fsm\io.h" />
     <ClInclude Include="GrammarReader.h" />
     <ClInclude Include="Logger.hpp" />
     <ClInclude Include="fsm\Machine.h" />

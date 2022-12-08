@@ -47,26 +47,3 @@ std::set<std::string> Machine::GetAvailableSignals() const
 {
 	return m_signals;
 }
-
-void Machine::PrintAsCsv(std::ostream& output) const
-{
-	for (auto& [name, state] : m_states)
-	{
-		output << ";" << (state->IsFinal() ? 'F' : ' ');
-	}
-	output << std::endl;
-	for (auto& [name, state] : m_states)
-	{
-		output << ";" << name;
-	}
-	output << std::endl;
-	for (auto& signal : m_signals)
-	{
-		output << signal;
-		for (auto& [name, state] : m_states)
-		{
-			output << ";" << state->Transition(signal);
-		}
-		output << std::endl;
-	}
-}

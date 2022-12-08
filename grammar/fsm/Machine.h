@@ -29,7 +29,7 @@ public:
 
 	std::set<std::string> GetAvailableSignals() const;
 
-	void PrintAsCsv(std::ostream& output) const;
+	friend void WriteCsv(std::ostream&, const Machine&);
 
 private:
 	std::string m_initialStateName;
