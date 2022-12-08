@@ -12,14 +12,19 @@ public:
 	template <typename T>
 	inline static void Log(const T& data, int color = 7)
 	{
-		if (m_isDebug)
+		if (!m_isQuiet)
 		{
 			SetConsoleTextAttribute(m_stdOutHandle, color);
 			std::cout << data;
 		}
 	}
 
+	static void Quiet(bool enable)
+	{
+		m_isQuiet = enable;
+	}
+
 private:
-	inline static bool m_isDebug = true;
+	inline static bool m_isQuiet = false;
 	inline static HANDLE m_stdOutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 };
