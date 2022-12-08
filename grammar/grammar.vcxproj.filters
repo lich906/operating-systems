@@ -18,10 +18,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Machine.cpp">
+    <ClCompile Include="fsm\Machine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="State.cpp">
+    <ClCompile Include="fsm\State.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GrammarReader.cpp">
@@ -32,10 +32,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Machine.h">
+    <ClInclude Include="fsm\Machine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="State.h">
+    <ClInclude Include="fsm\State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GrammarReader.h">
@@ -50,5 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="left_grammar.txt" />
+    <Text Include="right_grammar.txt" />
   </ItemGroup>
 </Project>

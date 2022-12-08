@@ -1,5 +1,7 @@
 #include "MachineDeterminer.h"
 
+using namespace fsm;
+
 Machine MachineDeterminer::Determine(Machine& machine)
 {
 	Machine resultMachine;

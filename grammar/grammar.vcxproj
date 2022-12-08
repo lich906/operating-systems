@@ -148,20 +148,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GrammarReader.cpp" />
-    <ClCompile Include="Machine.cpp" />
+    <ClCompile Include="fsm\Machine.cpp" />
     <ClCompile Include="MachineDeterminer.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="State.cpp" />
+    <ClCompile Include="fsm\State.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GrammarReader.h" />
     <ClInclude Include="Logger.hpp" />
-    <ClInclude Include="Machine.h" />
+    <ClInclude Include="fsm\Machine.h" />
     <ClInclude Include="MachineDeterminer.h" />
-    <ClInclude Include="State.h" />
+    <ClInclude Include="fsm\State.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="left_grammar.txt" />
+    <Text Include="right_grammar.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

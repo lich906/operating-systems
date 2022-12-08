@@ -1,5 +1,7 @@
 #include "GrammarReader.h"
 
+using namespace fsm;
+
 static inline void RemoveWhitespaces(std::string& str)
 {
 	str.erase(std::remove_if(str.begin(), str.end(), std::isspace), str.end());

@@ -1,5 +1,7 @@
 #include "State.h"
 
+using namespace fsm;
+
 State::State(const std::string name, bool isFinal)
 	: m_name(name)
 	, m_final(isFinal)
@@ -47,7 +49,7 @@ std::set<State*> State::GetClosedState()
 
 void State::GetClosedStateImpl(std::set<State*>& result)
 {
-	for (auto& closedState : m_transitions[EmptySignal])
+	for (auto& closedState : m_transitions[constants::EmptySignal])
 	{
 		if (!result.contains(closedState))
 		{
@@ -57,7 +59,7 @@ void State::GetClosedStateImpl(std::set<State*>& result)
 	}
 }
 
-std::ostream& operator<<(std::ostream& out, const std::set<State*>& states)
+std::ostream& fsm::operator<<(std::ostream& out, const std::set<State*>& states)
 {
 	if (!states.empty())
 	{
@@ -69,7 +71,7 @@ std::ostream& operator<<(std::ostream& out, const std::set<State*>& states)
 	}
 	else
 	{
-		out << NoTransitionsPlaceholder;
+		out << constants::NoTransitionsPlaceholder;
 	}
 	return out;
 }

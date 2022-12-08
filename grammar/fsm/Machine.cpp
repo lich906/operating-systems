@@ -1,5 +1,7 @@
 #include "Machine.h"
 
+using namespace fsm;
+
 std::unique_ptr<State>& Machine::AddState(std::unique_ptr<State>&& state)
 {
 	auto stateName = state->GetName();
@@ -35,7 +37,7 @@ void Machine::SetInitialStateName(const std::string& name)
 
 void Machine::AddSignal(const std::string& signal)
 {
-	if (signal != EmptySignal)
+	if (signal != constants::EmptySignal)
 	{
 		m_signals.insert(signal);
 	}

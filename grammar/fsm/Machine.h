@@ -9,6 +9,9 @@
 
 #include "State.h"
 
+namespace fsm
+{
+
 class Machine
 {
 public:
@@ -33,3 +36,5 @@ private:
 	std::unordered_map<std::string, std::unique_ptr<State>> m_states;
 	std::set<std::string> m_signals;
 };
+
+} // namespace fsm
