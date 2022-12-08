@@ -5,7 +5,7 @@
 
 #include "Logger.hpp"
 #include "MachineDeterminer.h"
-#include "fsm\io.h"
+#include "fsm/io.h"
 
 int main(int argc, char** argv)
 try

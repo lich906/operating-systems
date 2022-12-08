@@ -1,5 +1,5 @@
 #include "GrammarReader.h"
-#include "util\string\string.hpp"
+#include "util/string/string.hpp"
 
 using namespace fsm;
 

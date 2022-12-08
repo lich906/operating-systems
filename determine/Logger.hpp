@@ -1,7 +1,9 @@
 #pragma once
 
 #include <iostream>
-#include <windows.h>
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+	#include <windows.h>
+#endif
 
 class Logger
 {
@@ -14,7 +16,9 @@ public:
 	{
 		if (!m_isQuiet)
 		{
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 			SetConsoleTextAttribute(m_stdOutHandle, color);
+#endif
 			std::cout << data;
 		}
 	}
@@ -26,5 +30,7 @@ public:
 
 private:
 	inline static bool m_isQuiet = false;
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 	inline static HANDLE m_stdOutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+#endif
 };

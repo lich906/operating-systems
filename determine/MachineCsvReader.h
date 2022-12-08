@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "fsm\Machine.h"
+#include "fsm/Machine.h"
 
 class MachineCsvReader
 {

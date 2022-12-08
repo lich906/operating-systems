@@ -1,5 +1,5 @@
 #include "io.h"
-#include "..\util\string\string.hpp"
+#include "../util/string/string.hpp"
 
 void fsm::WriteCsv(std::ostream& output, const Machine& machine)
 {

@@ -2,7 +2,7 @@
 
 #include <queue>
 
-#include "fsm\Machine.h"
+#include "fsm/Machine.h"
 #include "Logger.hpp"
 
 const std::string NewStateLetter = "S";

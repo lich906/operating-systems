@@ -4,7 +4,7 @@
 #include <string_view>
 #include <algorithm>
 
-#include "fsm\Machine.h"
+#include "fsm/Machine.h"
 
 const std::string InitialStateName = "H";
 const std::string FinalStateName = "F";
