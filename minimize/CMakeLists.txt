@@ -1,4 +1,5 @@
 set(PROJECT_NAME minimize)
+set(CMAKE_CXX_STANDARD 20)
 
 ################################################################################
 # Source groups
