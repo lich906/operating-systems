@@ -31,7 +31,7 @@ try
 	}
 	catch (const std::exception&)
 	{
-		std::cout << program.help().str() << std::endl;
+		std::cout << program << std::endl;
 		throw;
 	}
 
