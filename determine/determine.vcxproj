@@ -150,7 +150,6 @@
     <ClCompile Include="fsm\io.cpp" />
     <ClCompile Include="fsm\Machine.cpp" />
     <ClCompile Include="fsm\State.cpp" />
-    <ClCompile Include="MachineCsvReader.cpp" />
     <ClCompile Include="MachineDeterminer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -159,7 +158,6 @@
     <ClInclude Include="fsm\Machine.h" />
     <ClInclude Include="fsm\State.h" />
     <ClInclude Include="Logger.hpp" />
-    <ClInclude Include="MachineCsvReader.h" />
     <ClInclude Include="MachineDeterminer.h" />
     <ClInclude Include="util\string\string.hpp" />
   </ItemGroup>

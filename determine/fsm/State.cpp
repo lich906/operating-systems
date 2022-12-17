@@ -17,11 +17,11 @@ std::set<State*> State::Transition(const std::string& signal)
 {
 	std::set<State*> result;
 
-	for (auto& statePart : GetClosedState())
+	for (auto& statePart : GetClosure())
 	{
 		for (auto& transition : statePart->m_transitions[signal])
 		{
-			auto closedTransition = transition->GetClosedState();
+			auto closedTransition = transition->GetClosure();
 			result.insert(closedTransition.begin(), closedTransition.end());
 		}
 	}
@@ -39,22 +39,22 @@ bool State::IsFinal() const
 	return m_final;
 }
 
-std::set<State*> State::GetClosedState()
+std::set<State*> State::GetClosure()
 {
 	std::set<State*> result;
 	result.insert(this);
-	GetClosedStateImpl(result);
+	GetClosureImpl(result);
 	return result;
 }
 
-void State::GetClosedStateImpl(std::set<State*>& result)
+void State::GetClosureImpl(std::set<State*>& result)
 {
 	for (auto& closedState : m_transitions[constants::EmptySignal])
 	{
 		if (!result.contains(closedState))
 		{
 			result.insert(closedState);
-			closedState->GetClosedStateImpl(result);
+			closedState->GetClosureImpl(result);
 		}
 	}
 }

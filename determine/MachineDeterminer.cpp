@@ -6,7 +6,7 @@ Machine MachineDeterminer::Determine(Machine& machine)
 {
 	Machine resultMachine;
 	std::queue<std::set<State*>> newStates;
-	newStates.push(machine.GetInitialState()->GetClosedState());
+	newStates.push(machine.GetInitialState()->GetClosure());
 
 	do
 	{

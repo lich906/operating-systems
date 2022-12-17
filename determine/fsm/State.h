@@ -30,10 +30,10 @@ public:
 
 	bool IsFinal() const;
 
-	std::set<State*> GetClosedState();
+	std::set<State*> GetClosure();
 
 private:
-	void GetClosedStateImpl(std::set<State*>& result);
+	void GetClosureImpl(std::set<State*>& result);
 
 	std::string m_name;
 	bool m_final;

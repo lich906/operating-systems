@@ -21,9 +21,6 @@
     <ClCompile Include="MachineDeterminer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MachineCsvReader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="fsm\io.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,9 +33,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MachineDeterminer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MachineCsvReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="fsm\io.h">

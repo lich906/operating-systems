@@ -8,17 +8,26 @@
 class Logger
 {
 public:
-	/*
-	Explicitly declare method as inline, so 'data' will be evaluated only if m_isDebug flag is set
-	*/
 	template <typename T>
-	inline static void Log(const T& data, int color = 7)
+	inline static void Log(const T& data, int color)
 	{
 		if (!m_isQuiet)
 		{
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 			SetConsoleTextAttribute(m_stdOutHandle, color);
 #endif
+			std::cout << data;
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+			SetConsoleTextAttribute(m_stdOutHandle, 7);
+#endif
+		}
+	}
+
+	template <typename T>
+	inline static void Log(const T& data)
+	{
+		if (!m_isQuiet)
+		{
 			std::cout << data;
 		}
 	}
