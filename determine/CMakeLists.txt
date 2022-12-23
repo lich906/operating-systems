@@ -14,7 +14,6 @@ set(Header_Files
     "fsm/Machine.h"
     "fsm/State.h"
     "Logger.hpp"
-    "MachineCsvReader.h"
     "MachineDeterminer.h"
     "util/string/string.hpp"
 )
@@ -24,7 +23,6 @@ set(Source_Files
     "fsm/io.cpp"
     "fsm/Machine.cpp"
     "fsm/State.cpp"
-    "MachineCsvReader.cpp"
     "MachineDeterminer.cpp"
     "main.cpp"
 )
