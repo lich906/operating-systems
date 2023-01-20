@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32510.428
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "minimize", "minimize\minimize.vcxproj", "{30757AD0-9480-4C9C-AA9C-CB4BD29AC765}"
 EndProject
@@ -15,6 +15,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "grammar", "grammar\grammar.vcxproj", "{DFB844CA-0ECB-462C-A5C4-8A844C6219BB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "determine", "determine\determine.vcxproj", "{0B312C9C-67FD-4D0E-A0F3-32B1789E9527}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lexer", "lexer\lexer.vcxproj", "{F448D1ED-B6CB-446F-8D4D-34D9381006C6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lexer_tests", "lexer\lexer_tests\lexer_tests.vcxproj", "{D68B5E69-1718-4C4C-AA90-73C5A89E300A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +60,22 @@ Global
 		{0B312C9C-67FD-4D0E-A0F3-32B1789E9527}.Release|x64.Build.0 = Release|x64
 		{0B312C9C-67FD-4D0E-A0F3-32B1789E9527}.Release|x86.ActiveCfg = Release|Win32
 		{0B312C9C-67FD-4D0E-A0F3-32B1789E9527}.Release|x86.Build.0 = Release|Win32
+		{F448D1ED-B6CB-446F-8D4D-34D9381006C6}.Debug|x64.ActiveCfg = Debug|x64
+		{F448D1ED-B6CB-446F-8D4D-34D9381006C6}.Debug|x64.Build.0 = Debug|x64
+		{F448D1ED-B6CB-446F-8D4D-34D9381006C6}.Debug|x86.ActiveCfg = Debug|Win32
+		{F448D1ED-B6CB-446F-8D4D-34D9381006C6}.Debug|x86.Build.0 = Debug|Win32
+		{F448D1ED-B6CB-446F-8D4D-34D9381006C6}.Release|x64.ActiveCfg = Release|x64
+		{F448D1ED-B6CB-446F-8D4D-34D9381006C6}.Release|x64.Build.0 = Release|x64
+		{F448D1ED-B6CB-446F-8D4D-34D9381006C6}.Release|x86.ActiveCfg = Release|Win32
+		{F448D1ED-B6CB-446F-8D4D-34D9381006C6}.Release|x86.Build.0 = Release|Win32
+		{D68B5E69-1718-4C4C-AA90-73C5A89E300A}.Debug|x64.ActiveCfg = Debug|x64
+		{D68B5E69-1718-4C4C-AA90-73C5A89E300A}.Debug|x64.Build.0 = Debug|x64
+		{D68B5E69-1718-4C4C-AA90-73C5A89E300A}.Debug|x86.ActiveCfg = Debug|Win32
+		{D68B5E69-1718-4C4C-AA90-73C5A89E300A}.Debug|x86.Build.0 = Debug|Win32
+		{D68B5E69-1718-4C4C-AA90-73C5A89E300A}.Release|x64.ActiveCfg = Release|x64
+		{D68B5E69-1718-4C4C-AA90-73C5A89E300A}.Release|x64.Build.0 = Release|x64
+		{D68B5E69-1718-4C4C-AA90-73C5A89E300A}.Release|x86.ActiveCfg = Release|Win32
+		{D68B5E69-1718-4C4C-AA90-73C5A89E300A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
