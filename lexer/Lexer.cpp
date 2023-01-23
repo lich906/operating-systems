@@ -43,11 +43,11 @@ std::vector<TokenWithContext> Lexer::Parse(std::istream& input)
 		else if (auto twoSymbolTok = MatchTwoSymbolTokens(firstChar, input.peek()))
 		{
 			tokWCtx.token = *twoSymbolTok;
-			tokWCtx.lexeme += firstChar += GetChar(input);
+			(tokWCtx.lexeme += firstChar) += GetChar(input);
 		}
 		else
 		{
-			tokWCtx.lexeme += GetChar(input);
+			tokWCtx.lexeme += firstChar;
 		}
 
 		if (input) result.emplace_back(std::move(tokWCtx));
@@ -87,7 +87,7 @@ int Lexer::GetChar(std::istream& input)
 void Lexer::NextLine()
 {
 	++m_lineNum;
-	m_colNum = 1;
+	m_colNum = 0;
 }
 
 std::optional<Token> Lexer::MatchTwoSymbolTokens(char ch1, char ch2)

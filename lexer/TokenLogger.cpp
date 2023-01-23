@@ -50,9 +50,16 @@ void TokenLogger::SetOutputStream(std::ostream& out)
 	m_out = out;
 }
 
-void TokenLogger::Log(const TokenWithContext& tokenWithCtx)
+void TokenLogger::Log(const std::vector<TokenWithContext>& tokens)
 {
-	m_out.get() << (tokenWithCtx.token == Token::Error ? "\n" : "")
-		<< tokenNames.at(*tokenWithCtx.token) << " '" << tokenWithCtx.lexeme << "' " << tokenWithCtx.lineNumber << ':'
-				<< tokenWithCtx.columnNumber << (tokenWithCtx.token == Token::Error ? "\n" : "") << std::endl;
+	for (auto&& token : tokens)
+	{
+		LogOne(token);
+	}
+}
+
+void TokenLogger::LogOne(const TokenWithContext& tokenWithCtx)
+{
+	m_out.get() << tokenNames.at(*tokenWithCtx.token) << " '" << tokenWithCtx.lexeme << "' " 
+		<< tokenWithCtx.lineNumber << ':' << tokenWithCtx.columnNumber << std::endl;
 }

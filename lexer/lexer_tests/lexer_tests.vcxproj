@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="..\Lexer.cpp" />
     <ClCompile Include="..\NumberParser.cpp" />
+    <ClCompile Include="..\TokenLogger.cpp" />
     <ClCompile Include="catch_main.cpp" />
     <ClCompile Include="Lexer.test.cpp" />
   </ItemGroup>
@@ -140,6 +141,7 @@
     <ClInclude Include="..\NumberParser.h" />
     <ClInclude Include="..\OneSymbolToken.hpp" />
     <ClInclude Include="..\Token.h" />
+    <ClInclude Include="..\TokenLogger.h" />
     <ClInclude Include="..\TokenWithContext.h" />
     <ClInclude Include="..\TwoSymbolToken.hpp" />
   </ItemGroup>

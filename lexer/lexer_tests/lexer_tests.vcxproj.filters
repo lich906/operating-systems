@@ -30,6 +30,9 @@
     <ClCompile Include="..\NumberParser.cpp">
       <Filter>External</Filter>
     </ClCompile>
+    <ClCompile Include="..\TokenLogger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\KeywordToken.hpp">
@@ -52,6 +55,9 @@
     </ClInclude>
     <ClInclude Include="..\TwoSymbolToken.hpp">
       <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\TokenLogger.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

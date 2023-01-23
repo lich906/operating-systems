@@ -93,7 +93,7 @@ Token NumberParser::ParseFloatingPoint(const std::string& number)
 		}
 	}
 
-	return Token::FloatingPointNumberLiteral;
+	return number.size() ? Token::FloatingPointNumberLiteral : Token::Error;
 }
 
 Token NumberParser::ParseHexadecimal(const std::string& number)
