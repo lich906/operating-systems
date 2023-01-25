@@ -50,7 +50,7 @@ fsm::Machine fsm::ReadCsv(std::istream& input)
 
 		for (size_t index = 1; index < transitions.size(); ++index)
 		{
-			if (transitions[index] == constants::NoTransitionsPlaceholder)
+			if (transitions[index] == constants::NoTransitionsPlaceholder || transitions[index].empty())
 			{
 				continue;
 			}
