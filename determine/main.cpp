@@ -10,7 +10,7 @@
 int main(int argc, char** argv)
 try
 {
-	argparse::ArgumentParser program("grammar");
+	argparse::ArgumentParser program("determine");
 	program.add_argument("-q", "--quiet")
 		.default_value(false)
 		.implicit_value(true)
