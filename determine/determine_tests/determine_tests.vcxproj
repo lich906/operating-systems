@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d68b5e69-1718-4c4c-aa90-73c5a89e300a}</ProjectGuid>
-    <RootNamespace>lexertests</RootNamespace>
+    <ProjectGuid>{a1570dc6-014c-4523-aa43-4793e60713fc}</ProjectGuid>
+    <RootNamespace>determinetests</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -105,7 +105,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>../../catch2;..</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,21 +129,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Lexer.cpp" />
-    <ClCompile Include="..\NumberParser.cpp" />
-    <ClCompile Include="..\TokenLogger.cpp" />
+    <ClCompile Include="..\fsm\io.cpp" />
+    <ClCompile Include="..\fsm\Machine.cpp" />
+    <ClCompile Include="..\fsm\State.cpp" />
+    <ClCompile Include="..\MachineDeterminer.cpp" />
     <ClCompile Include="catch_main.cpp" />
-    <ClCompile Include="Lexer.test.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\KeywordToken.hpp" />
-    <ClInclude Include="..\Lexer.h" />
-    <ClInclude Include="..\NumberParser.h" />
-    <ClInclude Include="..\OneSymbolToken.hpp" />
-    <ClInclude Include="..\Token.h" />
-    <ClInclude Include="..\TokenLogger.h" />
-    <ClInclude Include="..\TokenWithContext.h" />
-    <ClInclude Include="..\TwoSymbolToken.hpp" />
+    <ClInclude Include="..\fsm\io.h" />
+    <ClInclude Include="..\fsm\Machine.h" />
+    <ClInclude Include="..\fsm\State.h" />
+    <ClInclude Include="..\Logger.hpp" />
+    <ClInclude Include="..\MachineDeterminer.h" />
+    <ClInclude Include="..\util\string\string.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

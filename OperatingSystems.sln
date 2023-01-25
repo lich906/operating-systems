@@ -20,6 +20,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lexer", "lexer\lexer.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lexer_tests", "lexer\lexer_tests\lexer_tests.vcxproj", "{D68B5E69-1718-4C4C-AA90-73C5A89E300A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "determine_tests", "determine\determine_tests\determine_tests.vcxproj", "{A1570DC6-014C-4523-AA43-4793E60713FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -76,6 +78,14 @@ Global
 		{D68B5E69-1718-4C4C-AA90-73C5A89E300A}.Release|x64.Build.0 = Release|x64
 		{D68B5E69-1718-4C4C-AA90-73C5A89E300A}.Release|x86.ActiveCfg = Release|Win32
 		{D68B5E69-1718-4C4C-AA90-73C5A89E300A}.Release|x86.Build.0 = Release|Win32
+		{A1570DC6-014C-4523-AA43-4793E60713FC}.Debug|x64.ActiveCfg = Debug|x64
+		{A1570DC6-014C-4523-AA43-4793E60713FC}.Debug|x64.Build.0 = Debug|x64
+		{A1570DC6-014C-4523-AA43-4793E60713FC}.Debug|x86.ActiveCfg = Debug|Win32
+		{A1570DC6-014C-4523-AA43-4793E60713FC}.Debug|x86.Build.0 = Debug|Win32
+		{A1570DC6-014C-4523-AA43-4793E60713FC}.Release|x64.ActiveCfg = Release|x64
+		{A1570DC6-014C-4523-AA43-4793E60713FC}.Release|x64.Build.0 = Release|x64
+		{A1570DC6-014C-4523-AA43-4793E60713FC}.Release|x86.ActiveCfg = Release|Win32
+		{A1570DC6-014C-4523-AA43-4793E60713FC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
