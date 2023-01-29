@@ -4,6 +4,7 @@ using namespace fsm;
 
 Machine MachineDeterminer::Determine(Machine& machine)
 {
+	m_newStateIndex = 0;
 	Machine resultMachine;
 	std::queue<std::set<State*>> newStates;
 	newStates.push(machine.GetInitialState()->GetClosure());

@@ -22,6 +22,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lexer_tests", "lexer\lexer_
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "determine_tests", "determine\determine_tests\determine_tests.vcxproj", "{A1570DC6-014C-4523-AA43-4793E60713FC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "grammar_tests", "grammar\grammar_tests\grammar_tests.vcxproj", "{EAE025A1-33C5-4AE8-BD4D-84EA67E13847}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -86,6 +88,14 @@ Global
 		{A1570DC6-014C-4523-AA43-4793E60713FC}.Release|x64.Build.0 = Release|x64
 		{A1570DC6-014C-4523-AA43-4793E60713FC}.Release|x86.ActiveCfg = Release|Win32
 		{A1570DC6-014C-4523-AA43-4793E60713FC}.Release|x86.Build.0 = Release|Win32
+		{EAE025A1-33C5-4AE8-BD4D-84EA67E13847}.Debug|x64.ActiveCfg = Debug|x64
+		{EAE025A1-33C5-4AE8-BD4D-84EA67E13847}.Debug|x64.Build.0 = Debug|x64
+		{EAE025A1-33C5-4AE8-BD4D-84EA67E13847}.Debug|x86.ActiveCfg = Debug|Win32
+		{EAE025A1-33C5-4AE8-BD4D-84EA67E13847}.Debug|x86.Build.0 = Debug|Win32
+		{EAE025A1-33C5-4AE8-BD4D-84EA67E13847}.Release|x64.ActiveCfg = Release|x64
+		{EAE025A1-33C5-4AE8-BD4D-84EA67E13847}.Release|x64.Build.0 = Release|x64
+		{EAE025A1-33C5-4AE8-BD4D-84EA67E13847}.Release|x86.ActiveCfg = Release|Win32
+		{EAE025A1-33C5-4AE8-BD4D-84EA67E13847}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

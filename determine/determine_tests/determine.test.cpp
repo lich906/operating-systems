@@ -4,7 +4,7 @@
 #include "fsm/io.h"
 #include "MachineDeterminer.h"
 
-void Proccess(std::istream& input, std::ostream& output)
+void ProccessLeft(std::istream& input, std::ostream& output)
 {
 	auto machine = fsm::ReadCsv(input);
 	fsm::WriteCsv(output, MachineDeterminer::Determine(machine));
@@ -23,7 +23,7 @@ e;S2,S6,S8;;;;S1;;;;
 )");
 
 	std::ostringstream out;
-	Proccess(in, out);
+	ProccessLeft(in, out);
 
 	REQUIRE(out.str() == R"(;;;F;F
 ;S0;S1;S2;S3

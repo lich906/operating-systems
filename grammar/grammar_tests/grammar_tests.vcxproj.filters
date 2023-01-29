@@ -14,15 +14,18 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="External">
-      <UniqueIdentifier>{55fd7ad5-bb94-433c-b904-24f54254081d}</UniqueIdentifier>
+      <UniqueIdentifier>{f4123bf3-c12e-4c88-84aa-8262f1110a77}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="catch_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="determine.test.cpp">
+    <ClCompile Include="grammar.test.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GrammarReader.cpp">
+      <Filter>External</Filter>
     </ClCompile>
     <ClCompile Include="..\MachineDeterminer.cpp">
       <Filter>External</Filter>
@@ -38,6 +41,12 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\GrammarReader.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Logger.hpp">
+      <Filter>External</Filter>
+    </ClInclude>
     <ClInclude Include="..\MachineDeterminer.h">
       <Filter>External</Filter>
     </ClInclude>
@@ -51,9 +60,6 @@
       <Filter>External</Filter>
     </ClInclude>
     <ClInclude Include="..\util\string\string.hpp">
-      <Filter>External</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Logger.hpp">
       <Filter>External</Filter>
     </ClInclude>
   </ItemGroup>
