@@ -7,6 +7,11 @@ template <typename StateT>
 class AbstractTransition
 {
 public:
+	bool IsEmpty() const
+	{
+		return m_nextStateName == Constants::EMPTY_TRANSITION;
+	}
+
 	const std::string& GetNextStateName() const
 	{
 		return m_nextStateName;

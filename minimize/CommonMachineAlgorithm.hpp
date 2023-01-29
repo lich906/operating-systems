@@ -16,7 +16,7 @@ public:
 			for (const auto& inputSignal : inputSignals)
 			{
 				auto& tr = state.GetTransition(inputSignal);
-				if (!tr.HaveNextStatePointer())
+				if (!tr.HaveNextStatePointer() && !tr.IsEmpty())
 				{
 					Logger::Log(std::cout, "Threading states... '" + state.GetName() + "' ---" + inputSignal + "--> '" + tr.GetNextStateName() + "'");
 					tr.SetNextStatePtr(states.find(tr.GetNextStateName())->second);

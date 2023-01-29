@@ -52,14 +52,19 @@ void MooreMachine::ReadFromCsvFile(const std::string& fileName, const char sep)
 			{
 				MooreTransition transition(nextStateName);
 
-				auto nextStateIt = m_states.find(transition.GetNextStateName());
-				if (nextStateIt != m_states.end())
+				if (!transition.IsEmpty())
 				{
-					Logger::Log(std::cout, "Threading states... '" + stateName + "' ---" + m_inputSignals[i] + "--> '" + nextStateIt->second.GetName() + "'");
-					transition.SetNextStatePtr(nextStateIt->second);
+
+					auto nextStateIt = m_states.find(transition.GetNextStateName());
+					if (nextStateIt != m_states.end())
+					{
+						Logger::Log(std::cout, "Threading states... '" + stateName + "' ---" + m_inputSignals[i] + "--> '" + nextStateIt->second.GetName() + "'");
+						transition.SetNextStatePtr(nextStateIt->second);
+					}
+
+					Logger::Log(std::cout, "Creating transition... '" + state.GetName() + "' ---" + m_inputSignals[i] + "--> '" + transition.GetNextStateName() + "'");
 				}
 
-				Logger::Log(std::cout, "Creating transition... '" + state.GetName() + "' ---" + m_inputSignals[i] + "--> '" + transition.GetNextStateName() + "'");
 				state.AddTransition(m_inputSignals[i], transition);
 				i++;
 			}
@@ -136,7 +141,13 @@ void MooreMachine::RebuildMinimizedMachine()
 			for (const auto& inputSignal : m_inputSignals)
 			{
 				auto oldTransition = state.GetTransition(inputSignal);
-				newState.AddTransition(inputSignal, stateNamesToMinStateNames[oldTransition.GetNextStateName()]);
+				if (!oldTransition.IsEmpty())
+					newState.AddTransition(inputSignal, stateNamesToMinStateNames[oldTransition.GetNextStateName()]);
+				else
+				{
+					MooreTransition emptyTransition(Constants::EMPTY_TRANSITION);
+					newState.AddTransition(inputSignal, emptyTransition);
+				}
 			}
 			minimizedStates[respectiveMinStateName] = newState;
 		}

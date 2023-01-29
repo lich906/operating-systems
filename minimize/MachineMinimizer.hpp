@@ -21,7 +21,7 @@ public:
 			{
 				auto tr = queue.front()->GetTransition(inputSignal);
 
-				if (tr->GetLabel() == StateLabel::Unreachable)
+				if (!tr.IsEmpty() && tr->GetLabel() == StateLabel::Unreachable)
 				{
 					queue.push(&(states.find(tr->GetName())->second));
 					Logger::Log(std::cout, "State '" + tr->GetName() + "' pushed into queue.");
@@ -66,7 +66,10 @@ public:
 			{
 				std::vector<Label> nextStatesHashes;
 				for (const auto& inputSignal : inputSignals)
-					nextStatesHashes.push_back(state.GetTransition(inputSignal)->GetLabel());
+					if (state.GetTransition(inputSignal).IsEmpty())
+						nextStatesHashes.push_back(Constants::EMPTY_TRANSITION_LABEL);
+					else
+						nextStatesHashes.push_back(state.GetTransition(inputSignal)->GetLabel());
 
 				state.SetNextLabel(GetHash(state.GetLabel(), nextStatesHashes));
 			}
